@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.board.model.mapper.MemoMapper">
+
+	<insert id="writeMemo" parameterType="memoDto">
+		insert into memo (userid, comment, memotime, articleno)
+		values (#{userid}, #{comment}, now(), #{articleno})
+	</insert>
+	
+	<select id="listMemo" parameterType="int" resultType="memoDto">
+		select memono, userid, comment, memotime, articleno
+		from memo
+		where articleno = #{articleno}
+		order by memotime desc
+	</select>
+	
+	<update id="modifyMemo" parameterType="memoDto">
+		update memo
+		set comment = #{comment}
+		where memono = #{memono}
+	</update>
+	
+	<delete id="deleteMemo" parameterType="int">
+		delete from memo
+		where memono = #{memono}
+	</delete>
+	
+</mapper>
