@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyHouse.model.BoardDto;
-import com.ssafy.happyHouse.model.service.BoardService;
+import com.ssafy.happyHouse.model.board.BoardDto;
+import com.ssafy.happyHouse.model.board.service.BoardService;
 
 import io.swagger.annotations.ApiOperation;
 

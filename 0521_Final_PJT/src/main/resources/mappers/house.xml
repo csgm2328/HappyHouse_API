@@ -2,14 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.happyHouse.model.mapper.HouseMapper">
+<mapper namespace="com.ssafy.happyHouse.model.house.mapper.HouseMapper">
+
 	<select id="getList" resultType="map" parameterType="String">
-		SELECT d.no, d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
+		SELECT distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
 		d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.jibun, i.lat,
 		i.lng FROM housedeal d 
-		JOIN houseinfo i on d.code = i.code and d.AptName = i.AptName
+		left JOIN houseinfo i on d.dong = i.dong and d.AptName = i.AptName
 	    where d.dong=#{dong} 
 	</select>
+	
+	<select id="getDetail" resultType="houseDto" parameterType="Integer">
+		SELECT distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
+		d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.jibun, i.lat,
+		i.lng FROM housedeal d 
+		left JOIN houseinfo i on d.dong = i.dong and d.AptName = i.AptName
+		where d.no=#{no};
+	</select>
+	
+	<select id="getAptDetail" resultType="map" parameterType="map">
+		SELECT distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
+		d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.jibun, i.lat,
+		i.lng FROM housedeal d 
+		left JOIN houseinfo i on d.dong = i.dong and d.AptName = i.AptName
+		where d.AptName = #{AptName} and d.dong=#{dong};
+	</select>
+	
 	<select id="getDong" resultType="map" parameterType="String">
 		select 	* 
 		from 	dongcode;

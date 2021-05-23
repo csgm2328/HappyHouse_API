@@ -1,4 +1,4 @@
-package com.ssafy.happyHouse.model;
+package com.ssafy.happyHouse.model.house;
 
 public class HouseDto {
     int no;             // PK 번호
