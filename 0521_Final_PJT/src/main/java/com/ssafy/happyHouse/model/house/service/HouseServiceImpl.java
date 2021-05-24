@@ -30,4 +30,10 @@ public class HouseServiceImpl implements HouseService {
 	public HouseDto getDetail(int no) {
 		return houseMapper.getDetail(no);
 	}
+	public List<DongDto> getDongChart(String params) {
+		return houseMapper.getDongChart(params);
+	}
+	public List<DongDto> getHouseChartTop10(){
+		return houseMapper.getHouseChartTop10();
+	}
 }

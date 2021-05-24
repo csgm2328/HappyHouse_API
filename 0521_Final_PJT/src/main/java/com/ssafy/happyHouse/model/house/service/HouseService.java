@@ -11,5 +11,7 @@ public interface HouseService {
 	public List<HouseDto> getList(String dong);
 	public List<HouseDto> getAptDetail(Map<String, String> params);
 	public List<DongDto> getDong();
+	public List<DongDto> getDongChart(String params);
+	public List<DongDto> getHouseChartTop10();
 	public HouseDto getDetail(int no);
 }

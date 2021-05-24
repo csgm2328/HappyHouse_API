@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,6 +74,18 @@ public class HouseController {
 		BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/newsJson.json"));
 		JSONObject json = (JSONObject) new JSONParser().parse(reader);
 		return new ResponseEntity<JSONObject>(json, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getHouseChart", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<DongDto>> getHouseChart(@RequestParam(required = false) String dong) {
+		return new ResponseEntity<List<DongDto>>(houseService.getDongChart(dong), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getHouseChartTop10", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<DongDto>> getHouseChartTop10() {
+		return new ResponseEntity<List<DongDto>>(houseService.getHouseChartTop10(), HttpStatus.OK);
 	}
 
 }
