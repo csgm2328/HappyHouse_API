@@ -47,7 +47,7 @@
 	
 	<delete id="userDelete" parameterType="String">
 		delete from userdb
-		where userid = #{userid}
+		where id = #{id}
 	</delete>
 	
 </mapper>
