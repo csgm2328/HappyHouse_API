@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Crawler {
-//   @Scheduled(cron = "0 * 9 * * ?")
-	@Scheduled(fixedDelay = 5000)
+    @Scheduled(cron = "0 0 12 * * *")
+//	@Scheduled(fixedDelay = 5000)
 	public void cronJobSch() {
 		String URL = "https://www.google.com/search?q=%EC%95%84%ED%8C%8C%ED%8A%B8&tbm=nws";
 
