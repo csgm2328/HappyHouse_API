@@ -11,6 +11,7 @@ import com.ssafy.happyHouse.model.board.BoardDto;
 @Mapper
 public interface BoardMapper {
 	public List<BoardDto> selectBoard();
+	public List<BoardDto> searchBoard(String title);
 	public BoardDto selectBoardByNo(int no);
 	public int insertBoard(BoardDto board);
 	public int updateBoard(BoardDto board);

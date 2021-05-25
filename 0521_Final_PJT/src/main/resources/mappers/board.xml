@@ -6,8 +6,16 @@
 
 	<!-- 게시글 전체 조회 -->
 	<select id="selectBoard" resultType="boardDto">
-		select no, title, writer, content, substr(regtime, 1, 10) as regtime
-		  from vue_board 
+		 select no, title, writer, content, substr(regtime, 1, 10) as regtime
+		 from vue_board 
+		 order by no desc
+	</select>
+	
+	<!-- 게시글 제목 조회 -->
+	<select id="searchBoard" resultType="boardDto" parameterType="String">
+		 select no, title, writer, content, substr(regtime, 1, 10) as regtime
+		 from vue_board 
+		 where title like CONCAT('%', #{title}, '%')
 		 order by no desc
 	</select>
 	

@@ -21,6 +21,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectBoard();
 	}
     
+    @Override
+    public List<BoardDto> searchBoard(String title) {
+    	return boardDao.searchBoard(title);
+    }
+    
   	@Override
 	public boolean writeBoard(BoardDto BoardDto) {
 		return boardDao.insertBoard(BoardDto) == 1;

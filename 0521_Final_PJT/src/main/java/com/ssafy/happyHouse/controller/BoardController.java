@@ -41,6 +41,12 @@ public class BoardController {
 		logger.debug("retrieveBoard - 호출");
 		return new ResponseEntity<List<BoardDto>>(boardService.retrieveBoard(), HttpStatus.OK);
 	}
+    
+    @GetMapping("/searchBoard/{title}")
+    public ResponseEntity<List<BoardDto>> searchBoard(@PathVariable String title) throws Exception {
+    	logger.debug("searchBoard - 호출");
+    	return new ResponseEntity<List<BoardDto>>(boardService.searchBoard(title), HttpStatus.OK);
+    }
 
     @ApiOperation(value = "글번호에 해당하는 게시글의 정보를 반환한다.", response = BoardDto.class)    
 	@GetMapping("/{no}")
