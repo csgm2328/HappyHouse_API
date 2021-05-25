@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyHouse.model.house.DongDto;
 import com.ssafy.happyHouse.model.house.HouseDto;
+import com.ssafy.happyHouse.model.house.StoreDto;
 import com.ssafy.happyHouse.model.house.mapper.HouseMapper;
 
 
@@ -23,7 +24,6 @@ public class HouseServiceImpl implements HouseService {
 	public List<HouseDto> getAptDetail(Map<String, String> params){
 		return houseMapper.getAptDetail(params);
 	}
-	
 	public List<DongDto> getDong(){
 		return houseMapper.getDong();
 	}
@@ -35,5 +35,21 @@ public class HouseServiceImpl implements HouseService {
 	}
 	public List<DongDto> getHouseChartTop10(){
 		return houseMapper.getHouseChartTop10();
+	}
+	@Override
+	public boolean addPick(Map<String, String> params) {
+		return houseMapper.addPick(params) == 1;
+	}
+	@Override
+	public List<HouseDto> getPickList(String id) {
+		return houseMapper.getPickList(id);
+	}
+	@Override
+	public List<StoreDto> getStore(String dong) {
+		return houseMapper.getStore(dong);
+	}
+	@Override
+	public HouseDto getLately() {
+		return houseMapper.getLately();
 	}
 }

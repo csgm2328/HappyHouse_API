@@ -62,5 +62,36 @@
 		ORDER BY count(*) desc
 		LIMIT 10
 	</select>
+	
+	<insert id="addPick" parameterType="map">
+		insert into favorite value(#{id}, #{no});
+	</insert>
+	
+	<select id="getPickList" parameterType="String" resultType="houseDto">
+		SELECT distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
+		d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.jibun, i.lat,
+		i.lng FROM housedeal d 
+		JOIN houseinfo i on d.code = i.code and d.AptName = i.AptName
+		JOIN favorite f on f.no = d.no
+		where f.id = #{id};
+	</select>
+	
+	<select id="getStore" parameterType="String" resultType="storeDto">
+		SELECT name, type, industry, gugun, dong, address, lat, lng 
+		FROM store_info 
+		WHERE dong = #{dong} 
+		GROUP BY lat, lng
+		ORDER BY no DESC 
+		LIMIT 100;
+	</select>
+	
+	<select id="getLately" resultType="houseDto">
+		SELECT distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount, d.buildYear,
+		cast(d.dealYear as unsigned) as dealYear, cast(d.dealMonth as unsigned) as dealMonth, cast(d.dealDay as unsigned) as dealDay, d.area, d.floor, d.jibun, i.lat, i.lng 
+		FROM housedeal d 
+		left JOIN houseinfo i on d.dong = i.dong and d.AptName = i.AptName
+		ORDER BY dealYear desc, dealMonth desc, dealDay desc
+		LIMIT 1
+	</select>
 
 </mapper>

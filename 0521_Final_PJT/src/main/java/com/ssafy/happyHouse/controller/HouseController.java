@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.happyHouse.model.house.DongDto;
 import com.ssafy.happyHouse.model.house.HouseDto;
+import com.ssafy.happyHouse.model.house.StoreDto;
 import com.ssafy.happyHouse.model.house.service.HouseService;
 
 @Controller
@@ -87,5 +88,34 @@ public class HouseController {
 	public ResponseEntity<List<DongDto>> getHouseChartTop10() {
 		return new ResponseEntity<List<DongDto>>(houseService.getHouseChartTop10(), HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "/addPick", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> addPick(@RequestParam(name = "id") String id, @RequestParam(name = "no") String no) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("no", no);
+		if(houseService.addPick(map)) {
+			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		else return new ResponseEntity<String>("FAIL", HttpStatus.OK);
+	}
+	@RequestMapping(value = "/getPickList", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<HouseDto>> getPickList(@RequestParam(name = "id") String id) {
+		List<HouseDto> list = houseService.getPickList(id);
+		return new ResponseEntity<List<HouseDto>>(list, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/getStore", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<StoreDto>> getStore(@RequestParam(name = "dong") String dong) {
+		List<StoreDto> list = houseService.getStore(dong);
+		return new ResponseEntity<List<StoreDto>>(list, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/getLately", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<HouseDto> getLately() {
+		HouseDto dto = houseService.getLately();
+		return new ResponseEntity<HouseDto>(dto, HttpStatus.OK);
+	}
 }
