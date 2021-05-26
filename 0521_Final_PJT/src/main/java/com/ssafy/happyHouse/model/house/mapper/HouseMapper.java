@@ -21,4 +21,5 @@ public interface HouseMapper {
 	public HouseDto getDetail(int no);
 	public HouseDto getLately();
 	public int addPick(Map<String, String> params);
+	public int deletePick(Map<String, String> params);
 }

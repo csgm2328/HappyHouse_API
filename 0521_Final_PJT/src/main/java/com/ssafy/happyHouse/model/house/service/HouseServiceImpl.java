@@ -52,4 +52,7 @@ public class HouseServiceImpl implements HouseService {
 	public HouseDto getLately() {
 		return houseMapper.getLately();
 	}
+	public boolean deletePick(Map<String, String> params) {
+		return houseMapper.deletePick(params) == 1;
+	}
 }

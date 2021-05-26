@@ -106,6 +106,17 @@ public class HouseController {
 		List<HouseDto> list = houseService.getPickList(id);
 		return new ResponseEntity<List<HouseDto>>(list, HttpStatus.OK);
 	}
+	@RequestMapping(value = "/deletePick", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<String> deletePick(@RequestParam(name = "id") String id, @RequestParam(name = "no") String no) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("no", no);
+		if(houseService.deletePick(map)) {
+			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("FAIL", HttpStatus.OK);
+	}
 	@RequestMapping(value = "/getStore", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<StoreDto>> getStore(@RequestParam(name = "dong") String dong) {

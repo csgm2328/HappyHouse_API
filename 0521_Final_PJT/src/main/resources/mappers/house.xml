@@ -93,5 +93,11 @@
 		ORDER BY dealYear desc, dealMonth desc, dealDay desc
 		LIMIT 1
 	</select>
+	
+	<delete id="deletePick" parameterType="map">
+		DELETE FROM 	favorite 
+			   WHERE   	id=#{id} 
+			   AND 		no=#{no}
+	</delete>
 
 </mapper>

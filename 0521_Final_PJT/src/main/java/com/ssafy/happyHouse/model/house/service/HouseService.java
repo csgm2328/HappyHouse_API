@@ -19,4 +19,5 @@ public interface HouseService {
 	public HouseDto getDetail(int no);
 	public HouseDto getLately();
 	public boolean addPick(Map<String, String> params);
+	public boolean deletePick(Map<String, String> params);
 }
